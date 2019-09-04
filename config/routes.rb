@@ -47,7 +47,13 @@ Buscador::Application.routes.draw do
   end
 
   namespace :fichas do
-    resources :taxa
+
+    resources :taxa do
+      collection do
+         get 'coconana' =>  'taxa#coconana'
+      end
+    end
+
     resources :front do
       collection do
         # I. Clasificación y descripción de la especie

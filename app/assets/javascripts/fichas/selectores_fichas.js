@@ -5,6 +5,8 @@ $( document ).ready(function() {
         selector: 'textarea.form-control'
     });
 
+    var elInit = 0;
+
     // Mostrar u ocultar contenido SEGÚN opciones SI / NO cuando se cargue la  página
     casos = [
         'fichas_taxon[endemicas_attributes][0][endemicaMexico]',
@@ -58,8 +60,16 @@ $( document ).ready(function() {
             }
         });
 
-    $('#importancia')
+    $('#dato_especies_asociadas')
+        .on('cocoon:before-insert', function (event) {
+            console.log("Se agregará nuevo campo");
+        })
 
+        .on('cocoon:after-insert', function (event) {
+            console.log("Se agregó nuevo campo");
+        });
+
+    $('#importancia')
         .on("cocoon:before-remove", function (event) {
             var confirmation = confirm("Estás seguro?");;
             if( confirmation === false ){
@@ -67,11 +77,15 @@ $( document ).ready(function() {
             }
         });
 
+    $('#coconana').on('click', function(){
+        $('#lolo').load('/fichas/taxa/coconana #distribucion');
+    });
+
 });
 
 $(window).load(function(){
-    $(".apartadoFicha").fadeOut();
-    showOrHideInfoFicha();
+   // $(".apartadoFicha").fadeOut();
+    //showOrHideInfoFicha();
 });
 
 

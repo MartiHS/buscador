@@ -5,7 +5,7 @@
   <h3 class="titulo_subseccion"><%= t('secciones.s_biologia.alimentacion') %></h3>
   <%= select_multiple_nivel_3(f_taxon, :opciones_preguntas, :alimentacion, t('opciones_multiples.t_alimentacion')) %>
   <%
-    parametros = {:acceso => @taxon.infoalimenta, :modelo => f_taxon, :association => :infoalimenta, :titulo => "Información adicional", :el_div => "infoalimenta", :pregunta => Fichas::Observacionescarac::PREGUNTAS[:infoalimenta]}
+    parametros = {:acceso => @taxon.historiaNatural.infoalimenta, :modelo => f_taxon, :association => :infoalimenta, :titulo => "Información adicional", :el_div => "infoalimenta", :pregunta => Fichas::Observacionescarac::PREGUNTAS[:infoalimenta]}
     agrega_info_adicional(parametros)
   %>
   <div id="dato_<%= parametros[:el_div] %>">

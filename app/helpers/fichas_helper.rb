@@ -162,7 +162,7 @@ module FichasHelper
         'data-association-insertion-method' => 'append',
         href: '#dato_' + parametros[:el_div],
         'onclick' => 'reloadTiny()',
-        style: 'display: none') if @taxon.new_record? || (!@taxon.new_record? && parametros[:acceso].empty?)
+        style: 'display: inline') if @taxon.new_record? || (!@taxon.new_record? && parametros[:acceso].empty?)
 
     respuesta.html_safe
   end

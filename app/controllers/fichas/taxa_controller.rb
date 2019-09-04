@@ -1,6 +1,12 @@
 class Fichas::TaxaController < Fichas::FichasController
   before_action :set_taxon, only: [:show, :edit, :update, :destroy]
 
+  def coconana
+    @form_params = { url: '/fichas/taxa', method: 'post' }
+    @taxon = Fichas::Taxon.new
+    render 'fichas/taxa/seccion_distribucion/form', layout: false
+  end
+
   # GET /taxa
   # GET /taxa.json
   def index
