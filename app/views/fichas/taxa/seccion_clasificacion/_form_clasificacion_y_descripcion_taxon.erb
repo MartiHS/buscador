@@ -5,7 +5,21 @@
 
 <div class='nested-fields'>
   <%= f.input :id, required: true, :as => :hidden, :disabled => true %>
-  <%= f.input :IdCAT %>
+
+  <fieldset class="apartados">
+    <legend> Buscar especie: </legend>
+
+    <%= f.input :IdCAT %>
+    <hr class="espacio_ficha">
+    <%= f.input :reino %>
+    <%= f.input :divisionphylum %>
+    <%= f.input :clase %>
+    <%= f.input :orden %>
+    <%= f.input :familia %>
+    <%= f.input :genero %>
+    <%= f.input :especie %>
+  </fieldset>
+
   <h3 class="titulo_subseccion"><%= t('secciones.s_clasificacion.resumen') %></h3>
   <%= f.input :resumenEspecie %>
 

@@ -39,6 +39,28 @@ class Fichas::TaxaController < Fichas::FichasController
     end
   end
 
+  def get_taxonomia_especie
+
+    especie_id = params[:id]
+
+    ancestros = Especie.find(especie_id).ancestry_ascendente_obligatorio.split(',').delete_if {|elemento| elemento == ""}
+    ascendente_obligatorio = Especie.find(ancestros).map{ |e| e.nombre_cientifico }
+
+    respuesta = {
+        :id => especie_id,
+        :idCat => Especie.find(especie_id).scat.catalogo_id,
+        :reino => ascendente_obligatorio[0] || '',
+        :divisionphylum => ascendente_obligatorio[1] || '',
+        :clase => ascendente_obligatorio[2] || '',
+        :orden => ascendente_obligatorio[3] || '',
+        :familia =>ascendente_obligatorio[4] || '',
+        :genero => ascendente_obligatorio[5] || '',
+        :especie => ascendente_obligatorio[6] || ''
+
+    }
+    render json: respuesta
+  end
+
   # GET /taxa
   # GET /taxa.json
   def index
