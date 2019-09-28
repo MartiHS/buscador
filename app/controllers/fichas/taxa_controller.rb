@@ -141,6 +141,14 @@ class Fichas::TaxaController < Fichas::FichasController
           # Parámetros desde taxón:
           :tipoficha,
           :IdCAT,
+          :reino,
+          :divisionphylum,
+          :clase,
+          :orden,
+          :familia,
+          :genero,
+          :especie,
+
           # SECCIÓN CLASIFICACIÓN
           :resumenEspecie, :descEspecie, :especiesSmilares, :origen, :descripcionOrigen, :presencia, :adicinalPresencia, :invasora, :adicionalInvasora,
           :largoinicialhembras, :largofinalhembras, :edadinicialhembras, :edadfinalhembras, :tiempoedadhembra, :pesoinicialhembras, :pesofinalhembras,

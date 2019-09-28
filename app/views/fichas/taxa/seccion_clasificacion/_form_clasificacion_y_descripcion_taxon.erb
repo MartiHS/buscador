@@ -9,15 +9,15 @@
   <fieldset class="apartados">
     <legend> Buscar especie: </legend>
 
-    <%= f.input :IdCAT %>
+    <%= f.input :IdCAT, input_html: { class: 'campoBusquedaTaxon'} %>
     <hr class="espacio_ficha">
-    <%= f.input :reino %>
-    <%= f.input :divisionphylum %>
-    <%= f.input :clase %>
-    <%= f.input :orden %>
-    <%= f.input :familia %>
-    <%= f.input :genero %>
-    <%= f.input :especie %>
+    <%= f.input :reino, input_html: { class: 'campoBusquedaTaxon'} %>
+    <%= f.input :divisionphylum, input_html: { class: 'campoBusquedaTaxon'} %>
+    <%= f.input :clase, input_html: { class: 'campoBusquedaTaxon'} %>
+    <%= f.input :orden, input_html: { class: 'campoBusquedaTaxon'} %>
+    <%= f.input :familia, input_html: { class: 'campoBusquedaTaxon'} %>
+    <%= f.input :genero, input_html: { class: 'campoBusquedaTaxon'} %>
+    <%= f.input :especie, input_html: { class: 'campoBusquedaTaxon'} %>
   </fieldset>
 
   <h3 class="titulo_subseccion"><%= t('secciones.s_clasificacion.resumen') %></h3>
