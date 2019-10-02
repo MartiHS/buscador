@@ -61,6 +61,19 @@ class Fichas::TaxaController < Fichas::FichasController
     render json: respuesta
   end
 
+  def get_x_taxonomia
+
+      #render json: Especie.where("AscendentesObligatorios REGEXP ',#{params[:id]},'").left_joins(:categoria_taxonomica).where("IdNivel1 = #{nivel1} AND IdNivel2 = #{nivelDos} AND IdNivel3 = 0").map { |o| {:id => o.id, :value => o.nombre_cientifico} }
+
+    begin
+      especieSeleccionada = Especie.find(params[:id])
+      resultados = Especie.desc_obligatorios(especieSeleccionada).map { |o| {:id => o.id, :value => o.nombre_cientifico} }
+      render json: resultados
+    rescue
+      render json: []
+    end
+  end
+
   # GET /taxa
   # GET /taxa.json
   def index

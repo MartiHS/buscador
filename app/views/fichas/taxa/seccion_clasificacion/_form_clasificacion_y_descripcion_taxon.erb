@@ -10,14 +10,17 @@
     <legend> Buscar especie: </legend>
 
     <%= f.input :IdCAT, input_html: { class: 'campoBusquedaTaxon'} %>
-    <hr class="espacio_ficha">
-    <%= f.input :reino, input_html: { class: 'campoBusquedaTaxon'} %>
-    <%= f.input :divisionphylum, input_html: { class: 'campoBusquedaTaxon'} %>
-    <%= f.input :clase, input_html: { class: 'campoBusquedaTaxon'} %>
-    <%= f.input :orden, input_html: { class: 'campoBusquedaTaxon'} %>
-    <%= f.input :familia, input_html: { class: 'campoBusquedaTaxon'} %>
-    <%= f.input :genero, input_html: { class: 'campoBusquedaTaxon'} %>
-    <%= f.input :especie, input_html: { class: 'campoBusquedaTaxon'} %>
+    <p id="indicacionAgregarTaxo" style="display: none"> ¿No se encuentra en la lista? Clic <a onclick="muestraFiltroTaxo()">aquí</a> para agregar manualmente </p>
+    <div id="filtroTaxo" style="display: none"; >
+      <hr class="espacio_ficha">
+      <%= f.input :reino, :collection => Fichas::Taxon::REINO, input_html: { class: 'form-control selectpicker campoBusqueda_Taxon', 'title': t('general.seleccionar_opcion'), 'onchange': 'cargaOpciones(this, "divisionphylum");' } %>
+      <%= f.input :divisionphylum, :collection => [], input_html: { class: 'form-control selectpicker campoBusqueda_Taxon', 'title': t('general.seleccionar_opcion'), 'onchange': 'cargaOpciones(this, "clase");', 'data-live-search': 'true', } %>
+      <%= f.input :clase, :collection => [], input_html: { class: 'form-control selectpicker campoBusqueda_Taxon', 'title': t('general.seleccionar_opcion') , 'onchange': 'cargaOpciones(this, "orden");', 'data-live-search': 'true', } %>
+      <%= f.input :orden, :collection => [], input_html: { class: 'form-control selectpicker campoBusqueda_Taxon', 'title': t('general.seleccionar_opcion'), 'onchange': 'cargaOpciones(this, "familia");', 'data-live-search': 'true' } %>
+      <%= f.input :familia, :collection => [], input_html: { class: 'form-control selectpicker campoBusqueda_Taxon', 'title': t('general.seleccionar_opcion'), 'onchange': 'cargaOpciones(this, "genero");', 'data-live-search': 'true' } %>
+      <%= f.input :genero, :collection => [], input_html: { class: 'form-control selectpicker campoBusqueda_Taxon', 'title': t('general.seleccionar_opcion'), 'onchange': 'cargaOpciones(this, "especie");', 'data-live-search': 'true' } %>
+      <%= f.input :especie, :collection => [], input_html: { class: 'form-control selectpicker campoBusqueda_Taxon', 'title': t('general.seleccionar_opcion'), 'data-live-search': 'true' } %>
+    </div>
   </fieldset>
 
   <h3 class="titulo_subseccion"><%= t('secciones.s_clasificacion.resumen') %></h3>

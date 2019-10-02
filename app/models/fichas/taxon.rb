@@ -4,7 +4,7 @@ class Fichas::Taxon < Ficha
 	self.primary_key = 'especieId'
 
 	has_one :scat, class_name: 'Scat', primary_key: :IdCAT, foreign_key: Scat.attribute_alias(:catalogo_id)
-	has_one :especie, through: :scat, source: :especie
+	has_one :especie_coconana, through: :scat, source: :especie
 
 	has_one :habitats, class_name: 'Fichas::Habitat', :foreign_key => 'especieId', inverse_of: :taxon
 	has_many :endemicas, :class_name => 'Fichas::Endemica', :foreign_key => 'especieId', inverse_of: :taxon
@@ -231,6 +231,14 @@ class Fichas::Taxon < Ficha
       "Presentes por confirmar (casual)".to_sym,
       "Presente confinado".to_sym,
       "Se desconoce".to_sym
+  ]
+
+  REINO = [
+			"Animalia".to_sym,
+			"Plantae".to_sym,
+			"Prokaryotae".to_sym,
+			"Fungi".to_sym,
+			"Protoctista".to_sym
   ]
 
 	# Para sección de especies prioritarias

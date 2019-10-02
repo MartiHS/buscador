@@ -52,6 +52,7 @@ Buscador::Application.routes.draw do
       collection do
         get 'cargar_seccion/:seccion(/:id)' =>  'taxa#get_x_seccion'
         get 'taxonomia_especie/:id' => 'taxa#get_taxonomia_especie'
+        get 'taxonomia_siguiente/:id' => 'taxa#get_x_taxonomia'
       end
     end
     resources :front do

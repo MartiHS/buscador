@@ -136,6 +136,8 @@ nombre_autoridad, estatus").categoria_taxonomica_join }
   scope :arbol_nodo_inicial, ->(taxon) { arbol_nodo_select.where(id: taxon.path_ids).order("#{CategoriaTaxonomica.table_name}.#{CategoriaTaxonomica.attribute_alias(:nivel1)}") }
   # Scope para cargar las hojas del arbol nodo inical en la ficha de la especie
   scope :arbol_nodo_hojas, ->(taxon) { arbol_nodo_select.where("#{CategoriaTaxonomica.table_name}.#{CategoriaTaxonomica.attribute_alias(:nivel1)}=?",taxon.categoria_taxonomica.nivel1+1).where("#{Especie.attribute_alias(:ancestry_ascendente_directo)} LIKE '%,?,%'", taxon.id).order(:nombre_cientifico) }
+  # Scope para devolver los descendientes obligatorios de la especie
+  scope :desc_obligatorios, ->(taxon) { where("#{CategoriaTaxonomica.table_name}.#{CategoriaTaxonomica.attribute_alias(:nivel1)}=?",taxon.categoria_taxonomica.nivel1 + 1).where("#{Especie.attribute_alias(:ancestry_ascendente_obligatorio)} LIKE '%,?,%'", taxon.id).where("IdNivel3 = 0 ").left_joins(:categoria_taxonomica) }
   # Scope para cargar el arbol identado en la ficha de la espcie
   scope :arbol_identado_select, -> { Especie.select_basico(['conteo']).select_nivel_categoria.left_joins(:adicional, :categoria_taxonomica, :especie_estadisticas, :scat).where("estadistica_id=? AND #{Scat.attribute_alias(:publico)}=?",3,true) }
   # Scope para cargar el arbol identado inical en la ficha de la especie
